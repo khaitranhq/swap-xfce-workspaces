@@ -2,6 +2,8 @@
 
 Swap/move the current Xfce workspace, with either the next, previous or a specified target workspace.
 
+This swaps over all the windows from the src and target workspaces, then swaps the workspace names.
+
 ## Requirements
 
 You need `wmctrl` installed. See: https://www.freedesktop.org/wiki/Software/wmctrl/
