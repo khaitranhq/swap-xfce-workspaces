@@ -180,22 +180,5 @@ do
   wmctrl -ir "$window" -t "$current_ws_idx"
 done
 
-# Swap workspace names
-# TODO: I think this is the only xfce/xfwm specific code in here
-# and you could probably do this with wmctrl insetad, making it more general.
-xfconf_cmd="xfconf-query -c xfwm4 -p /general/workspace_names"
-for i in "${!ws_names[@]}"; do
-    if [[ $i == "$current_ws_idx" ]]; then
-      xfconf_cmd+=" -s \"$target_ws_name\""
-    elif [[ $i == "$target_ws_idx" ]]; then
-      xfconf_cmd+=" -s \"$current_ws_name\""
-    else
-      xfconf_cmd+=" -s \"${ws_names[$i]}\""
-    fi
-done
-
-vmsg "Renaming workspaces: $xfconf_cmd"
-eval "$xfconf_cmd"
-
 # Switch to the target desktop
 wmctrl -s $target_ws_idx
